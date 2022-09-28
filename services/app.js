@@ -11,10 +11,9 @@ const app = express();
 app.use(bodyParser.json());
 
 var localDB = 'mongodb://localhost:27017/bonganibg';
-var cloudDB = process.env.CLOUD_DB;
+var cloudDB = "mongodb+srv://testingtesting:hLV2Q1gTgUObGqxJ@bonganibg-cluster.8wkbq.mongodb.net/?retryWrites=true&w=majority"; //process.env.CLOUD_DB;
 app.use(cors());
 
-console.log(process.env);
 mongoose.connect(cloudDB, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
 	console.log("Connected To Database");
