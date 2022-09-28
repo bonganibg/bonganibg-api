@@ -5,6 +5,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const routeProject = require("./routes/projectRoute");
+const routeAnalytics = require("./routes/analyticsRoute");
 
 const app = express();
 
@@ -19,6 +20,8 @@ mongoose.connect(cloudDB, {useNewUrlParser: true, useUnifiedTopology: true})
 	console.log("Connected To Database");
 	
 	app.use("/api/projects", routeProject);
+	app.use("/api/analytics", routeAnalytics);
+
 })
 .catch(() => {
     console.log("Not Connected To Database");
