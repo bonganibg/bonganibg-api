@@ -9,13 +9,15 @@ router.post('', (req, res) => {
         Name: req.body.name,
         Email: req.body.email,
         Subject: req.body.subject,
-        Message: req.body.messafe,
+        Message: req.body.message,
         SentOn: req.body.date
     }
     new Email(email)
     .save()
     .then((response) => {
-        res.status(201).json();
+        res.status(201).json({
+            message: "done"
+        });
     })
     .catch((error) => {
         console.log(error);

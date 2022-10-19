@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const routeProject = require("./routes/projectRoute");
 const routeAnalytics = require("./routes/analyticsRoute");
+const emailSender = require("./routes/emailRoute");
 
 const app = express();
 
@@ -15,12 +16,13 @@ var localDB = 'mongodb://localhost:27017/bonganibg';
 var cloudDB = "mongodb+srv://testingtesting:hLV2Q1gTgUObGqxJ@bonganibg-cluster.8wkbq.mongodb.net/?retryWrites=true&w=majority"; //process.env.CLOUD_DB;
 app.use(cors());
 
-mongoose.connect(cloudDB, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(localDB, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
 	console.log("Connected To Database");
 	
 	app.use("/api/projects", routeProject);
 	app.use("/api/analytics", routeAnalytics);
+	app.use("/api/email", emailSender);
 
 })
 .catch(() => {

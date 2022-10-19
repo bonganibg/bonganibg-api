@@ -3,6 +3,20 @@ const router = express.Router();
 const Analytics = require('../models/analyticsModel');
 
 router.post('', (req,res) => {
+   const model = {
+	date : 'today',
+	note: req.body.data
+   }
+   new Analytics(model).save()
+   .then((results) => {
+		res.status(204).json();
+	})
+	.catch((err) => {
+		res.status(401).json()
+	});
+});
+
+router.post('/decrypt', (req,res) => {
 
     if (isDataValid(req.body.data)){
         const decoded = atob(req.body.data);
