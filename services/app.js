@@ -16,7 +16,7 @@ var localDB = 'mongodb://localhost:27017/bonganibg';
 var cloudDB = "mongodb+srv://testingtesting:hLV2Q1gTgUObGqxJ@bonganibg-cluster.8wkbq.mongodb.net/?retryWrites=true&w=majority"; //process.env.CLOUD_DB;
 app.use(cors());
 
-mongoose.connect(localDB, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(cloudDB, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
 	console.log("Connected To Database");
 	
