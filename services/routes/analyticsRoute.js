@@ -3,17 +3,18 @@ const router = express.Router();
 const Analytics = require('../models/analyticsModel');
 
 router.post('', (req,res) => {
-   const model = {
-	date : 'today',
-	note: req.body.data
-   }
-   new Analytics(model).save()
-   .then((results) => {
-		res.status(204).json();
-	})
-	.catch((err) => {
-		res.status(401).json()
-	});
+    const analytics = {
+        date: req.body.date,
+        note: req.body.note
+    }
+    new Analytics(analytics).save()
+    .then(results => {
+        res.status(204).json();
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(401).json();
+    });
 });
 
 router.post('/decrypt', (req,res) => {
@@ -30,27 +31,27 @@ router.post('/decrypt', (req,res) => {
             res.status(401).json();
         });
     }
-    else 
+    else
     {
         res.status(400).json();
     }
 });
 
 
-const isDataValid = (input) => {       
+const isDataValid = (input) => {
     try{
-        
+
         const decoded = atob(input);
         const model = JSON.parse(decoded);
         if (model.date !== undefined && model.note !== undefined)
         {
             return true;
-        }        
-    }    
+        }
+    }
     catch(error){
         console.log(error);
     }
-    
+
     return false;
 }
 
