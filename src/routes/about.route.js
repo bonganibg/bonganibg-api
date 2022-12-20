@@ -32,4 +32,55 @@ router.get('/me', (req,res) => {
 })
 
 
+router.post('/tech/detail', authMW,(req,res) => {
+    const tech = new TechRepo(req);
+
+    tech.createTechDetail().then((response) => {
+        res.status(201).json({})
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(400).json({})
+    })
+});
+
+router.get('tech/detalil/:id', (req,res) => {
+    const tech = new TechRepo(req);
+
+    tech.getTechDetails(req.params.id).then((response) => {
+        res.status(200).json({
+            details: response
+        })
+    }).catch((error) => {
+        console.log(error);
+        res.status(400).json()
+    })
+})
+
+router.post('/tech', authMW, (req,res) => {
+    const tech = new TechRepo(req);
+
+    tech.createTechSection().then((response) => {
+        res.status(201).json();
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(400).json();
+    });
+})
+
+router.get('/tech', (req,res) =>{
+    const tech = new TechRepo(req);
+
+    tech.getTechSection().then((response) => {
+        res.status(200).json({
+            technologies: response
+        })        
+    })
+    .catch((error) => {
+        res.status(400).json()
+    });
+})
+
+
 module.exports = router;

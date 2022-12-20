@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const stringParams = {type: String, required: true};
 
 const technologies = mongoose.Schema({
-    // _id: stringParams,
+     _id: stringParams,
     heading: stringParams,
     technologies: {
         type: Array,
-        // _id: string,
+        tech_id: stringParams,
         name: stringParams
     }
 });
