@@ -83,4 +83,31 @@ router.get('/tech', (req,res) =>{
 })
 
 
+router.post('/question', authMW,(req,res) => {
+    const question = new QuestionsRepo(req);
+
+    question.createQuestion().then((response) => {
+        res.status(201).json();
+    })
+    .catch((error) => {
+        console.warn(error);
+        res.status(400).json();
+    })
+})
+
+
+router.get('/question', (req,res) => {
+    const question = new QuestionsRepo(req);
+
+    question.getQuestions().then((response) => {
+        res.status(200).json({
+            questions: response
+        })
+    })
+    .catch((error) => {
+        console.warn(error);
+        res.status(400).json()
+    })
+})
+
 module.exports = router;
