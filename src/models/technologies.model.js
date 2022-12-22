@@ -7,7 +7,7 @@ const technologies = mongoose.Schema({
     heading: stringParams,
     technologies: {
         type: Array,
-        tech_id: stringParams,
+        _id: stringParams,
         name: stringParams
     }
 });
