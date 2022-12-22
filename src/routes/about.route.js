@@ -44,7 +44,7 @@ router.post('/tech/detail', authMW,(req,res) => {
     })
 });
 
-router.get('tech/detalil/:id', (req,res) => {
+router.get('/tech/detail/:id', (req,res) => {
     const tech = new TechRepo(req);
 
     tech.getTechDetails(req.params.id).then((response) => {
@@ -54,6 +54,20 @@ router.get('tech/detalil/:id', (req,res) => {
     }).catch((error) => {
         console.log(error);
         res.status(400).json()
+    })
+})
+
+router.get('/tech/detail', (req, res) => {
+    const tech = new TechRepo(req);
+
+    tech.getAllTechDetails().then((response) => {
+        res.status(200).json({
+            details: response
+        })
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(400).json();
     })
 })
 

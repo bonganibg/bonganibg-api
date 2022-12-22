@@ -37,5 +37,9 @@ module.exports = class {
         return await TechDetails.find({"_id": id});
     }
 
+    async getAllTechDetails(){
+        return await TechDetails.find({},{"description": 0, "icon": 0, "score": 0});
+    }
+
 
 }
